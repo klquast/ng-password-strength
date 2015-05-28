@@ -2,8 +2,8 @@
   "name": "ng-password-strength",
   "version": "0.2.1",
   "description": "ng-password-strength",
-  "homepage": "https://github.com/subarroca/ng-password-strength",
-  "bugs": "https://github.com/subarroca/ng-password-strength/issues",
+  "homepage": "https://github.com/klquast/ng-password-strength",
+  "bugs": "https://github.com/klquast/ng-password-strength/issues",
   "licenses": [
     {
       "type": "MIT"
@@ -47,12 +47,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/subarroca/ng-password-strength.git"
+    "url": "https://github.com/klquast/ng-password-strength.git"
   },
   "author": {
-    "name": "Salvador Subarroca",
+    "name": "Kaytee Quast",
     "email": "",
-    "url": "https://github.com/subarroca"
+    "url": "https://github.com/klquast"
   },
   "keywords": [
     "angular",
