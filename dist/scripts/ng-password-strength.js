@@ -180,8 +180,8 @@
                   case 0:
                   case 1:
                     return {
-                      inner: scope.outterClassPrefix + 'danger',
-                      outter: scope.innerClassPrefix + 'alert'
+                      inner: scope.innerClassPrefix + 'danger',
+                      outter: scope.outterClassPrefix + 'danger'
                     };
                   case 2:
                     return {
