@@ -174,33 +174,30 @@
                 return Math.max(0, Math.min(100, Math.round(strength)));
               },
 
-
               getClass = function(s) {
-                switch (Math.round(s / 33)) {
-                  case 0:
-                  case 1:
+                if (s < 30) {
                     return {
-                      inner: scope.innerClassPrefix + 'danger',
-                      outter: scope.outterClassPrefix + 'danger'
+                        inner: scope.innerClassPrefix + 'danger',
+                        outter: scope.outterClassPrefix + 'danger'
                     };
-                  case 2:
+                }
+
+                if (s >= 30 && s < 50) {
                     return {
-                      outter: scope.outterClassPrefix + 'warning',
-                      inner: scope.innerClassPrefix + 'warning'
+                        outter: scope.outterClassPrefix + 'warning',
+                        inner: scope.innerClassPrefix + 'warning'
                     };
-                  case 3:
+                }
+
+                if (s >= 50) {
                     return {
-                      outter: scope.outterClassPrefix + 'success',
-                      inner: scope.innerClassPrefix + 'success'
+                        outter: scope.outterClassPrefix + 'success',
+                        inner: scope.innerClassPrefix + 'success'
                     };
                 }
               };
 
-
-
             // DISPLAY
-
-
             scope.innerClassPrefix = scope.innerClassPrefix || '';
             scope.outterClassPrefix = scope.outterClassPrefix || '';
 
@@ -213,6 +210,7 @@
             scope.$watch('pwd', function() {
               scope.value = measureStrength(scope.pwd);
               scope.valueClass = getClass(scope.value);
+              scope.$parent.$parent.strengthValue = scope.value; // first $parent is popover, second $parent is createAccountController
             });
           },
         };
