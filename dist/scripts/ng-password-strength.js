@@ -64,7 +64,7 @@
                   matches.pos.lower = p.match(/[a-z]/g);
                   matches.pos.upper = p.match(/[A-Z]/g);
                   matches.pos.numbers = p.match(/\d/g);
-                  matches.pos.symbols = p.match(/[$-/:-?{-~!^_`\[\]]/g);
+                  matches.pos.symbols = p.match(/[~!@#$%^&*()_+-={}|\[\]\\:\";'<>?,./]/g);
                   matches.pos.middleNumber = p.slice(1, -1).match(/\d/g);
                   matches.pos.middleSymbol = p.slice(1, -1).match(/[$-/:-?{-~!^_`\[\]]/g);
 
@@ -91,6 +91,7 @@
                   matches.neg.consecNumbers = p.match(/(?=(\d{2}))/g);
                   matches.neg.onlyNumbers = p.match(/^[0-9]*$/g);
                   matches.neg.onlyLetters = p.match(/^([a-z]|[A-Z])*$/g);
+                  matches.neg.onlySymbols = matches.pos.symbols ? matches.pos.symbols.length === counts.pos.numChars ? true : false : false;
 
                   counts.neg.consecLower = matches.neg.consecLower ? matches.neg.consecLower.length : 0;
                   counts.neg.consecUpper = matches.neg.consecUpper ? matches.neg.consecUpper.length : 0;
@@ -165,6 +166,9 @@
                   }
                   if (matches.neg.onlyLetters) {
                     strength -= counts.pos.numChars;
+                  }
+                  if (matches.neg.onlySymbols) {
+                      strength -= (counts.pos.numChars) * 7;
                   }
                   if (counts.neg.repeated) {
                     strength -= (counts.neg.repeated / counts.pos.numChars) * 10;
