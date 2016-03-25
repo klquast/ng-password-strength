@@ -97,7 +97,6 @@
                   counts.neg.consecUpper = matches.neg.consecUpper ? matches.neg.consecUpper.length : 0;
                   counts.neg.consecNumbers = matches.neg.consecNumbers ? matches.neg.consecNumbers.length : 0;
 
-
                   // sequential letters (back and forth)
                   for (i = 0; i < letters.length - 2; i++) {
                     var p2 = p.toLowerCase();
@@ -172,6 +171,9 @@
                   }
                   if (counts.neg.repeated) {
                     strength -= (counts.neg.repeated / counts.pos.numChars) * 10;
+                  }
+                  if (p.length < 8) {
+                    strength = Math.min(49, strength);
                   }
                 }
 
