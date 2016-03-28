@@ -64,7 +64,7 @@
                   matches.pos.lower = p.match(/[a-z]/g);
                   matches.pos.upper = p.match(/[A-Z]/g);
                   matches.pos.numbers = p.match(/\d/g);
-                  matches.pos.symbols = p.match(/[~!@#$%^&*()_+-={}|\[\]\\:\";'<>?,./]/g);
+                  matches.pos.symbols = p.match(/[~!@#$%^&*()_+\-={}|\[\]\\:\";'<>?,./]/g);
                   matches.pos.middleNumber = p.slice(1, -1).match(/\d/g);
                   matches.pos.middleSymbol = p.slice(1, -1).match(/[$-/:-?{-~!^_`\[\]]/g);
 
@@ -172,9 +172,17 @@
                   if (counts.neg.repeated) {
                     strength -= (counts.neg.repeated / counts.pos.numChars) * 10;
                   }
+
+                    // Custom strength conditions
+                  var forceWeak = 29,
+                      forceFair = 49,
+                      forceGood = 69;
+
                   if (p.length < 8) {
-                    strength = Math.min(49, strength);
-                  }
+                    strength = Math.min(forceFair, strength);
+                  } else if (((counts.pos.upper < 1 && counts.pos.lower >= 1) || (counts.pos.lower < 1 && counts.pos.upper >= 1)) && counts.pos.symbols === 0) {
+                      strength = Math.min(forceFair, strength);
+                  } 
                 }
 
                 return Math.max(0, Math.min(100, Math.round(strength)));
@@ -222,3 +230,4 @@
         };
       });
 })();
+
